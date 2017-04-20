@@ -1,0 +1,11 @@
+<div id="search-component">
+  <h4>Food Search</h4>
+  <input #searchQuery (keyup)="getItems(searchQuery.value)" />
+  <div>
+    <div>
+      <div *ngFor="let item of items">
+        {{item.fields.item_name}} --- {{item.fields.brand_name}} --- Calories: {{item.fields.nf_calories}}
+      </div>
+    </div>
+  </div>
+</div>

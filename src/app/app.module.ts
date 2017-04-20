@@ -4,17 +4,20 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { NutritionixComponent } from './nutritionix/nutritionix.component';
+import { NutritionixService } from './nutritionix/nutritionix.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NutritionixComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [NutritionixService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
