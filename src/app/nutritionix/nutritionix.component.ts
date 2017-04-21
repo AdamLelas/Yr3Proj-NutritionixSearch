@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable }       from 'rxjs/Observable';
 
 import { NutritionixService } from './nutritionix.service';
+import { Router }            from '@angular/router';
 
 @Component({
   selector: 'app-nutritionix',
@@ -12,7 +13,6 @@ export class NutritionixComponent implements OnInit  {
   //array of items found
   items = [];
   resultArray;
-  arraytorender;
 
   //search string
   searchQuery;
@@ -21,22 +21,29 @@ static get parameters(){
   return [[NutritionixService]];
 }
 
-  constructor(private nutritionixService: NutritionixService) {
-     //this.items = [];
-     this.arraytorender =[];
+  constructor(
+    private nutritionixService: NutritionixService,
+    private router: Router
+  ) {
+
   } 
 
-  ngOnInit(): any {
-    this.nutritionixService.getSearchResults(this.searchQuery).subscribe(
-      response => { 
-        console.log(response)
-        this.resultArray = response 
-      }
-    );
+  ngOnInit(): any { 
+    // this.nutritionixService.getSearchResults(this.searchQuery).subscribe(
+    //   response => { 
+    //     console.log(response)
+    //     this.resultArray = response 
+    //   }
+   // );     
+  }
 
+  makeObject(r: any){
 
+  }
 
-     
+  gotoFood(food: any):void{    
+    let link = ['/detail', food.id];
+    this.router.navigate(link);  
   }
 
   getItems(term: string){
@@ -50,12 +57,10 @@ static get parameters(){
             data => {
               console.log('search results',data/*.hits*/)
               this.items = data
+              this.makeObject(this.items)
             },
             (err) => alert ("Error searching: " + err)           
           )
-
-
-
   }
 
 

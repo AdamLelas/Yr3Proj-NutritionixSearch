@@ -2,7 +2,7 @@ export class Food {
 
     item_id: number | string;
     item_name: string;
-    brand_id: number | string;
+    //brand_id: number | string;
     brand_name: string;
     nf_calories: number;
     nf_total_fat: number;

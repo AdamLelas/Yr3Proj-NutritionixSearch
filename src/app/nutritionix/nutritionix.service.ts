@@ -12,7 +12,6 @@ export class NutritionixService {
   private APP_ID = "7b43b860";
   private API_KEY = "65a509b92f1d44aa3d1fd800a5e151c5";
 
-  //un-used
 
   static get parameters() {
     return [[Http]];
@@ -20,12 +19,18 @@ export class NutritionixService {
 
   constructor(private http: Http) { }
 
+  // private extractData(res: Response){
+  //   let body = res.json().hits;
+  //   return body.data || {};
+  // }
+
+
   getSearchResults(_searchString) {
     // fields to get back from API based on documenation
-    let fields = 'brand_id,item_name,item_id,brand_name,nf_calories,nf_total_fat';
+    let fields = 'item_name,item_id,brand_name,nf_calories,nf_total_fat';
 
     let params: URLSearchParams = new URLSearchParams();
-    params.set('results', '0:15');
+    params.set('results', '0:10');
     params.set('appId', this.APP_ID);
     params.set('appKey', this.API_KEY);
     params.set('fields', fields);
@@ -35,9 +40,11 @@ export class NutritionixService {
     let url = this.BASE_URL + _searchString;
     //console.log(url);
     return this.http.get(url, { search: params })
+      //.map(this.extractData);
       .map(res => res.json().hits);
-
   }
+
+
 
 
 
