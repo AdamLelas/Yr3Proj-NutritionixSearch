@@ -1,12 +1,35 @@
 <div id="search-component">
-  <h4>Food Search</h4>
+  <h4>Food Search: Click on item to add to Journal</h4>
   <input #searchQuery (keyup)="getItems(searchQuery.value)" id="search-box" />
   <div>
     <div>
-      <div *ngFor="let item of items"
-          (click)="gotoFoodPage(item)" class="search-result">
-        {{item.fields.item_name}} -- Calories: {{item.fields.nf_calories}}
+      <div *ngFor="let item of items">
+        <!--<input type="text" name="food-name" [(ngModel)]="item.fields.item_name">
+        <button (click)="updateFood(item)">Save</button>
+        <button (click)="deleteFood(item)">Delete</button>-->
+        <!--(click)="gotoFoodPage(item)" class="search-result">-->
+        <!--{{item.fields.item_name}} -- Calories: {{item.fields.nf_calories}}-->
+
+        <div class="search-result" (click)="addFoodToJournal(item.fields)">
+          {{item.fields.item_name}}        
+        </div>
+
       </div>
     </div>
   </div>
 </div>
+
+
+<!--<ul>
+    <li *ngFor="let item of items"><input type="text" name="food-name" [(ngModel)]="item.fields.item_name">
+    <button (click)="updateFood(item)">Save</button> 
+    <button (click)="deleteFood(item)">Delete</button></li>
+</ul>-->
+
+
+<h1>Journal Entries</h1>
+<ul>
+  <div *ngFor="let jent of jentries">
+    {{jent.item_name}}
+  </div>
+</ul>

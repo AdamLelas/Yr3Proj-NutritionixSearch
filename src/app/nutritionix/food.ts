@@ -6,7 +6,7 @@ export class Food {
     brand_name: string;
     nf_calories: number;
     nf_total_fat: number;
-    
+        
 
     // calories: number;
     // total_fat: number;

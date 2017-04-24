@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, URLSearchParams } from '@angular/http';
+import { Http, Response, URLSearchParams, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Food } from './Food';
@@ -11,18 +11,15 @@ export class NutritionixService {
   private BASE_URL = "http://api.nutritionix.com/v1_1/search/";
   private APP_ID = "7b43b860";
   private API_KEY = "65a509b92f1d44aa3d1fd800a5e151c5";
-
+  private API_KEY2 = "c06a55b3110132ca20255014d9a7a681";
+  private API_KEY3 = "12ab39dc2925ef32fd49e7c4b68ea986";
+  private POST_URL = "http://58fa637eae2db312008804af.mockapi.io/api/v1/FoodItems";
 
   static get parameters() {
     return [[Http]];
   }
 
   constructor(private http: Http) { }
-
-  // private extractData(res: Response){
-  //   let body = res.json().hits;
-  //   return body.data || {};
-  // }
 
 
   getSearchResults(_searchString) {
@@ -32,7 +29,7 @@ export class NutritionixService {
     let params: URLSearchParams = new URLSearchParams();
     params.set('results', '0:10');
     params.set('appId', this.APP_ID);
-    params.set('appKey', this.API_KEY);
+    params.set('appKey', this.API_KEY2);
     params.set('fields', fields);
     // params.set('cal_min', '0');
     // params.set('cal_max', '50000');
@@ -45,43 +42,18 @@ export class NutritionixService {
   }
 
 
+  addToJournal(food){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let body = JSON.stringify(food);
+    return this.http.post(this.POST_URL, body, options).map((res: Response)=> res.json());
+  }
+
+  getJournal(){
+    return this.http.get(this.POST_URL).map((res: Response) => res.json());
+  }  
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-  // search (term: string) {
-  //   let url = this.BASE_URL;
-  //   let params = new URLSearchParams();
-  //   params.set('appId', this.APP_ID);
-  //   params.set('appKey', this.APP_KEY);
-  //   params.set('fields', this.FIELDS );
-  //   // TODO: Add error handling
-  //   // return this.jsonp
-  //   //            .get(url, { search: params })
-  //   //            .map(response => <string[]> response.json()[1]);
-  // }
-
-  //  getSomeData(_searchString) {
-
-  //       let params: URLSearchParams = new URLSearchParams();
-  //       params.set('appId', this.APP_ID);
-  //       params.set('appKey', this.API_KEY);
-
-  //       let url = this.BASE_URL + _searchString;
-
-  //       return this.http.get(url, { search: params })
-  //         .map(res => res.json().hits);
-  // }
 
 
 
