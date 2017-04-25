@@ -20,39 +20,36 @@
     <button (click)="deleteFood(item)">Delete</button></li>
 </ul>-->
 
+<!--
+<div *ngFor="let jent of jentries">
+  {{jent.createdAt | date:'dd/MM/yyyy'}}
+</div>-->
 
 <h1>Journal Entries</h1>
 <ul>
   <button type="button" class="btn btn-info" (click)="show = !show">Additional Information</button>
   <br><br>
   <div *ngFor="let jent of jentries">
-
-    {{jent.item_name}} <button type="button" class="btn btn-danger" (click)="deleteFood(jent)">Delete</button>
-    <br>
-    <div *ngIf="show">
-      <div class="additional-info-journal">
-        <!--<p>Brand: {{jent.brand_name}}</p>
-        <p>Calories: {{jent.nf_calories}}</p>
-        <p>Total Fat: {{jent.nf_total_fat}}</p>
-        <p>Saturated Fat: {{jent.nf_saturated_fat}}</p>
-        <p>Sodium: {{jent.nf_sodium}}</p>
-        <p>Carbohydrates: {{jent.nf_total_carbohydrate}}</p>
-        <p>Fiber: {{jent.nf_dietary_fiber}}</p>
-        <p>Sugar: {{jent.nf_sugars}}</p>
-        <p>Protein: {{jent.nf_protein}}</p>-->
-        <ul>
-          <li> <strong>Brand:</strong> {{jent.brand_name}} </li>
-          <li> Calories: {{jent.nf_calories}} kcal</li>
-          <li> Total Fat: {{jent.nf_total_fat}}g</li>
-          <li> Saturated Fat: {{jent.nf_saturated_fat}}g</li>
-          <li> Sodium: {{jent.nf_sodium}}mg</li>
-          <li> Carbohydrates: {{jent.nf_total_carbohydrate}}g</li>
-          <li> Fiber: {{jent.nf_dietary_fiber}}g</li>
-          <li> Sugar: {{jent.nf_sugars}}g</li>
-          <li> Protein: {{jent.nf_protein}}g</li>
-        </ul>        
-      </div>
+    <!--<div *ngIf="jent.entryId == '2017425UserIdTest'">-->
+      {{jent.item_name}} <button type="button" class="btn btn-danger" (click)="deleteFood(jent)">Delete</button>
       <br>
-    </div>
+      <div *ngIf="show">
+        <div class="additional-info-journal">
+          <ul>
+            <li> <strong>Brand:</strong> {{jent.brand_name}} </li>
+            <li> Calories: {{jent.nf_calories}} kcal</li>
+            <li> Total Fat: {{jent.nf_total_fat}}g</li>
+            <li> Saturated Fat: {{jent.nf_saturated_fat}}g</li>
+            <li> Sodium: {{jent.nf_sodium}}mg</li>
+            <li> Carbohydrates: {{jent.nf_total_carbohydrate}}g</li>
+            <li> Fiber: {{jent.nf_dietary_fiber}}g</li>
+            <li> Sugar: {{jent.nf_sugars}}g</li>
+            <li> Protein: {{jent.nf_protein}}g</li>
+            <!--<li> Date: {{jent.createdAt | date:'dd/MM/yyyy'}}</li>-->
+          </ul>
+        </div>
+        <br>
+      </div>
+    <!--</div> -->
   </div>
 </ul>

@@ -14,7 +14,6 @@ export class NutritionixService {
   private API_KEY2 = "c06a55b3110132ca20255014d9a7a681";
   private API_KEY3 = "12ab39dc2925ef32fd49e7c4b68ea986";
   private POST_URL = "http://58fa637eae2db312008804af.mockapi.io/api/v1/FoodItems";
-
   static get parameters() {
     return [[Http]];
   }
@@ -28,7 +27,7 @@ export class NutritionixService {
     let params: URLSearchParams = new URLSearchParams();
     params.set('results', '0:10');
     params.set('appId', this.APP_ID);
-    params.set('appKey', this.API_KEY2);
+    params.set('appKey', this.API_KEY);
     params.set('fields', fields);
     // params.set('cal_min', '0');
     // params.set('cal_max', '50000');
@@ -36,23 +35,22 @@ export class NutritionixService {
     let url = this.BASE_URL + _searchString;
     //console.log(url);
     return this.http.get(url, { search: params })
-      //.map(this.extractData);
       .map(res => res.json().hits);
   }
 
   deleteFromJournal(foodid: number) {
      return this.http.delete(`${this.POST_URL}/${foodid}`)
-        .map((res: Response) => res.json())
-     ;
+        .map((res: Response) => res.json());
   }
 
   addToJournal(food){
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    let body = JSON.stringify(food);
+    let newFood = new Food(food);
+    let body = JSON.stringify(newFood);
     return this.http.post(this.POST_URL, body, options).map((res: Response)=> res.json());
   }
-
+  
   getJournal(){
     return this.http.get(this.POST_URL).map((res: Response) => res.json());
   }  

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+ 
 
 import { NutritionixService } from './nutritionix.service';
 import { Router } from '@angular/router';
@@ -29,6 +30,18 @@ export class NutritionixComponent implements OnInit {
 
   ngOnInit(): any {
     this.getJournalFromService();
+    this.generateNow();
+    //TODO:call a get current user method  and generate the entryID using userid and generateNow();
+
+  }
+
+  
+  generateNow():string{
+    let nowStr:string;
+    let now = new Date();
+    let month = now.getMonth()+1;
+    nowStr = now.getFullYear() + ""+ month + ""+ now.getDate();
+    return nowStr;
   }
 
   //gets items from nutritionx search endpoint
@@ -77,6 +90,9 @@ export class NutritionixComponent implements OnInit {
       )
     }
   }
+
+
+
 
 
 }
