@@ -16,6 +16,7 @@ export class NutritionixComponent implements OnInit {
   foodObj;
   resultArray;
   jentries = [];
+  show:boolean = false;
 
   //search string
   searchQuery;
@@ -47,7 +48,6 @@ export class NutritionixComponent implements OnInit {
     )
   }
 
-
   getJournalFromService() {
     this.nutritionixService.getJournal().subscribe(
       data => { this.jentries = data },
@@ -56,7 +56,7 @@ export class NutritionixComponent implements OnInit {
     );
   }
 
-  addFoodToJournal(term){
+  addFoodToJournal(term) {
     this.nutritionixService.addToJournal(term).subscribe(
       data => {
         this.getJournalFromService();
@@ -66,6 +66,16 @@ export class NutritionixComponent implements OnInit {
         console.log("Error adding food to Journal");
       }
     );
+  }
+
+  deleteFood(food) {
+    if (confirm("Delete entry: " + food.item_name + "?")) {
+      this.nutritionixService.deleteFromJournal(food.item_id).subscribe(
+        data => {
+          this.getJournalFromService();
+        }
+      )
+    }
   }
 
 

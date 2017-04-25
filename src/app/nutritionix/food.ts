@@ -6,16 +6,15 @@ export class Food {
     brand_name: string;
     nf_calories: number;
     nf_total_fat: number;
-        
+    saturated_fat: number;
+    sodium: number;
+    carbs: number;
+    dietary_fiber: number;
+    sugars: number;
+    protein: number;    
 
     // calories: number;
-    // total_fat: number;
-    // saturated_fat: number;
-    // sodium: number;
-    // carbs: number;
-    // dietary_fiber: number;
-    // sugars: number;
-    // protein: number;
+    
 
 }
      

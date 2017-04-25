@@ -24,8 +24,7 @@ export class NutritionixService {
 
   getSearchResults(_searchString) {
     // fields to get back from API based on documenation
-    let fields = 'item_name,item_id,brand_name,nf_calories,nf_total_fat';
-
+    let fields = 'item_name,item_id,brand_name,nf_calories,nf_total_fat,nf_saturated_fat,nf_sodium,nf_total_carbohydrate,nf_dietary_fiber,nf_sugars,nf_protein';
     let params: URLSearchParams = new URLSearchParams();
     params.set('results', '0:10');
     params.set('appId', this.APP_ID);
@@ -41,6 +40,11 @@ export class NutritionixService {
       .map(res => res.json().hits);
   }
 
+  deleteFromJournal(foodid: number) {
+     return this.http.delete(`${this.POST_URL}/${foodid}`)
+        .map((res: Response) => res.json())
+     ;
+  }
 
   addToJournal(food){
     let headers = new Headers({ 'Content-Type': 'application/json' });

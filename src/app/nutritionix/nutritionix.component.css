@@ -18,3 +18,10 @@
   width: 700px;
   height: 20px;
 }
+
+.additional-info-journal{
+  /*float:left;*/
+  border-style: solid;
+  border-color: lightgray;
+  background-color: lightsteelblue;
+}
